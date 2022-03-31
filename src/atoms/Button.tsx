@@ -26,6 +26,6 @@ export default function Button(props: IButtonProps) {
 }
 
 Button.defaultProps = {
-	text: '로그인',
+	text: 'button',
 	colorMode: 'white'
 }
