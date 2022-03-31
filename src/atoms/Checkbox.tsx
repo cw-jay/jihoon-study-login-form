@@ -10,14 +10,12 @@ interface CheckboxProps {
 	onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 
-export default function Checkbox(props: CheckboxProps): JSX.Element {
-	const { id = '', label = '', ...otherProps } = props
+export default function Checkbox(props: CheckboxProps) {
+	const { id, label = '', ...otherProps } = props
 	return (
 		<>
-			<input type="checkbox" id={`${id}${label}`} {...otherProps} />
-			<label htmlFor={`${id}${label}`}>{label}</label>
+			<input type="checkbox" id={id} {...otherProps} />
+			<label htmlFor={id}>{label}</label>
 		</>
 	)
 }
-
-Checkbox.defaultProps = {}
