@@ -18,7 +18,7 @@ export default function useEmailFilter() {
 		setShowEmailOptions(isShow)
 	}
 
-	const filteredListForEmailLikeMatch = (
+	const getFilteredListForEmailLikeMatch = (
 		arr: string[],
 		sub: string
 	): string[] => {
@@ -34,7 +34,7 @@ export default function useEmailFilter() {
 			isShowOptions: isShowEmailOptions,
 			prefixTextForOptions,
 			onChange: onChangeEmail,
-			options: filteredListForEmailLikeMatch(emailList, email)
+			options: getFilteredListForEmailLikeMatch(emailList, email)
 		}
 	}
 }
