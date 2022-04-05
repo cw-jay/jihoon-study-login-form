@@ -15,7 +15,7 @@ interface IAutocompleteProps {
 }
 
 export default function Autocomplete(props: IAutocompleteProps) {
-	const [isFocus, setIsFocus] = useState(false)
+	const [isFocus, setIsFocus] = useState<boolean>(false)
 	const {
 		value,
 		options,

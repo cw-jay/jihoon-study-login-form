@@ -13,7 +13,7 @@ interface IPasswordProps {
 }
 
 export default function Password(props: IPasswordProps) {
-	const [isPasswordType, setPasswordType] = useState(true)
+	const [isPasswordType, setPasswordType] = useState<boolean>(true)
 	const toggleInputType = () => {
 		setPasswordType((isPasswordType) => !isPasswordType)
 	}
