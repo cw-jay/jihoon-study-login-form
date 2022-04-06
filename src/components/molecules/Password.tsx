@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 // components
-import Input from '../atoms/Input'
+import Input from 'components/atoms/Input'
 
 interface IPasswordProps {
 	value?: string

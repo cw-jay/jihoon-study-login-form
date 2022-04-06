@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { validateEmailPrefix } from '../util/common'
+import { validateEmailPrefix } from 'utils/common'
 
 /**
  * useEmailFilter
