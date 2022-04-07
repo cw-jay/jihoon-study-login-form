@@ -1,7 +1,7 @@
 // dependency
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { autoLogIn } from 'services/login'
+import { logIn } from 'services/login'
 
 // components
 import Button from 'components/atoms/Button'
@@ -20,7 +20,7 @@ function Login() {
 	}
 
 	function submit() {
-		autoLogIn({ id: emailFilterProps.value, isAutoLogin })
+		logIn({ id: emailFilterProps.value, isAutoLogin })
 		navigate('/mypage')
 	}
 	return (

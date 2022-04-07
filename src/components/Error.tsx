@@ -1,7 +1,9 @@
+// dependency
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logOut } from 'services/login'
 
+// components
 import Button from 'components/atoms/Button'
 
 export default function Error() {

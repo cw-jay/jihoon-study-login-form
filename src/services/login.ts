@@ -1,29 +1,29 @@
-export function autoLogIn({
+export function logIn({
 	id,
 	isAutoLogin
 }: {
 	id: string
 	isAutoLogin: boolean
 }) {
-	localStorage.setItem('isAuth', JSON.stringify({ id, isAutoLogin }))
+	localStorage.setItem('loginInfo', JSON.stringify({ id, isAutoLogin }))
 }
 
 export function logOut() {
-	localStorage.removeItem('isAuth')
+	localStorage.removeItem('loginInfo')
 }
 
-export function getIsAutoLogin(): boolean {
-	const isAuth = localStorage.getItem('isAuth')
-	if (isAuth) {
-		return JSON.parse(isAuth).isAutoLogin
+export function getIsAutoLogIn(): boolean {
+	const authInfo = localStorage.getItem('loginInfo')
+	if (authInfo) {
+		return JSON.parse(authInfo).isAutoLogin
 	}
 	return false
 }
 
 export function getUserId(): string {
-	const isAuth = localStorage.getItem('isAuth')
-	if (isAuth) {
-		return JSON.parse(isAuth).id
+	const authInfo = localStorage.getItem('loginInfo')
+	if (authInfo) {
+		return JSON.parse(authInfo).id
 	}
 	return ''
 }

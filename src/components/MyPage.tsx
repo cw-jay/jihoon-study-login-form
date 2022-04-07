@@ -1,7 +1,7 @@
 // dependency
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { logOut, getUserId, getIsAutoLogin } from 'services/login'
+import { logOut, getUserId, getIsAutoLogIn } from 'services/login'
 
 // components
 import Button from 'components/atoms/Button'
@@ -13,7 +13,8 @@ function MyPage() {
 		if (!userId) {
 			return navigate('/')
 		}
-		if (!getIsAutoLogin()) {
+		// 자동 로그인 체크가 아닐 경우, 새로고침 할 때 메인 페이지로 가는 것을 보여주기 위한 시연 코드.
+		if (!getIsAutoLogIn()) {
 			logOut()
 		}
 	}, [userId])
