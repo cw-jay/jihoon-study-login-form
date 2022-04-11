@@ -19,9 +19,12 @@ export default function useEmailFilter() {
 	]
 
 	const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const emailExceptforBackslash = e.target.value.replace(/[\\\[\]\(\)]/g, '')
-		const isEmail = validateEmailPrefix(emailExceptforBackslash)
-		setEmail(emailExceptforBackslash)
+		const emailExceptforRegexOperators = e.target.value.replace(
+			/[\\\[\]\(\)]/g,
+			''
+		)
+		const isEmail = validateEmailPrefix(emailExceptforRegexOperators)
+		setEmail(emailExceptforRegexOperators)
 		showEmailList(isEmail)
 	}
 
