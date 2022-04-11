@@ -7,17 +7,20 @@ export default function useInput<T extends string>(
 ) {
 	const [value, setValue] = useState<T>(initialValue)
 	const [isError, setError] = useState<boolean>(false)
-	const onChangeHandler = useCallback((e) => {
-		setValue(e.target.value)
-		setError(Boolean(isErrorCondtion?.(e.target.value)))
-	}, [])
+	const onChangeHandler = useCallback(
+		(e) => {
+			setValue(e.target.value)
+			setError(Boolean(isErrorCondtion?.(e.target.value)))
+		},
+		[isErrorCondtion]
+	)
 	const onBlurHandler = () => {
 		if (isInValid(value)) {
 			setError(true)
 		}
 	}
-	const isInValid = (inputValue: T) => {
-		return isErrorCondtion?.(inputValue)
+	const isInValid = (inputValue: T): boolean => {
+		return Boolean(isErrorCondtion?.(inputValue))
 	}
 	return {
 		value,

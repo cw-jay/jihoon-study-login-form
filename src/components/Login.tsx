@@ -1,5 +1,5 @@
 // dependency
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logIn } from 'services/login'
 import { validateEmailFormat } from 'utils/common'
@@ -33,13 +33,13 @@ function Login() {
 		navigate('/mypage')
 	}
 
-	function isDisabledSubmitButton(): boolean {
+	const isDisabledSubmitButton = useMemo(() => {
 		return (
 			isEmptyValue(passwordProps.value) ||
 			isEmptyValue(emailFilterProps.value) ||
 			!validateEmailFormat(emailFilterProps.value)
 		)
-	}
+	}, [passwordProps.value, emailFilterProps.value])
 
 	return (
 		<>
@@ -49,9 +49,13 @@ function Login() {
 			{isEmailTouched && isEmptyValue(emailFilterProps.value) && (
 				<span className="error-message">아이디(이메일)을 입력해주세요</span>
 			)}
-			{isEmailTouched && !validateEmailFormat(emailFilterProps.value) && (
-				<span className="error-message">올바른 이메일 형식을 입력해주세요</span>
-			)}
+			{isEmailTouched &&
+				emailFilterProps.value &&
+				!validateEmailFormat(emailFilterProps.value) && (
+					<span className="error-message">
+						올바른 이메일 형식을 입력해주세요
+					</span>
+				)}
 			<div className="row">
 				<Checkbox
 					id="autoLoginCheck"
@@ -72,7 +76,7 @@ function Login() {
 					className="fullWidth"
 					text="로그인"
 					onClick={submit}
-					disabled={isDisabledSubmitButton()}
+					disabled={isDisabledSubmitButton}
 				/>
 			</div>
 			<div className="row">

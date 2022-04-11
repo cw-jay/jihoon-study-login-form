@@ -79,7 +79,6 @@ export default function Autocomplete(props: IAutocompleteProps) {
 		if (e.currentTarget.value && (e.key === 'Enter' || e.code === 'Enter')) {
 			onClickItem?.(prefixTextForOptions + options[activeItemIndex])
 			setActiveItemIndex(-1)
-			setIsFocus(false)
 		}
 	}
 

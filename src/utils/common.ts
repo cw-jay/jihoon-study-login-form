@@ -14,7 +14,7 @@ export function validateEmailPrefix(emailPrefix: string): boolean {
  * validateEmailFormat
  * @description 입력된 문자열이 email 형식에 맞는지 검사
  * @param {string} email - 검사할 대상 값
- * @return {boolean} true or false
+ * @return {boolean} valid한 email format 일 경우 true, invalid한 email format일 경우 false
  */
 export function validateEmailFormat(email: string): boolean {
 	// regex: 알파벳과 숫자, 특수문자(dot(.), underscore(_), dash(-))가 포함된 문자열 + @ + 알파벳 + dot(.) + 알파벳 2글자 이상

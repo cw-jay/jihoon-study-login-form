@@ -14,22 +14,29 @@ interface IPasswordProps {
 }
 
 export default function Password(props: IPasswordProps) {
+	const { value, ...otherProps } = props
 	const [isPasswordType, setPasswordType] = useState<boolean>(true)
 	const toggleInputType = () => {
 		setPasswordType((isPasswordType) => !isPasswordType)
 	}
 	return (
 		<>
-			<Input {...props} type={isPasswordType ? 'password' : 'text'} />
-			<span
-				onClick={toggleInputType}
-				style={{
-					marginLeft: -50,
-					cursor: 'pointer'
-				}}
-			>
-				{isPasswordType ? 'show' : 'hide'}
-			</span>
+			<Input
+				value={value}
+				{...otherProps}
+				type={isPasswordType ? 'password' : 'text'}
+			/>
+			{value && (
+				<span
+					onClick={toggleInputType}
+					style={{
+						marginLeft: -50,
+						cursor: 'pointer'
+					}}
+				>
+					{isPasswordType ? 'show' : 'hide'}
+				</span>
+			)}
 		</>
 	)
 }
