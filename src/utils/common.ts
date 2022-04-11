@@ -9,3 +9,18 @@ export function validateEmailPrefix(emailPrefix: string): boolean {
 	const emailRegex = new RegExp(/^[a-z0-9]+(?:[._-][a-z0-9]+)*@/, 'i')
 	return emailRegex.test(emailPrefix)
 }
+
+/**
+ * validateEmailFormat
+ * @description 입력된 문자열이 email 형식에 맞는지 검사
+ * @param {string} email - 검사할 대상 값
+ * @return {boolean} true or false
+ */
+export function validateEmailFormat(email: string): boolean {
+	// regex: 알파벳과 숫자, 특수문자(dot(.), underscore(_), dash(-))가 포함된 문자열 + @ + 알파벳 + dot(.) + 알파벳 2글자 이상
+	const emailRegex = new RegExp(
+		/^[a-z0-9]+(?:[._-][a-z0-9]+)*@[a-z]+(?:[.][a-z]{2,})/,
+		'i'
+	)
+	return emailRegex.test(email)
+}

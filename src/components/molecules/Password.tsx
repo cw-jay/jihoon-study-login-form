@@ -10,6 +10,7 @@ interface IPasswordProps {
 	placeholder?: string
 	fullWidth?: boolean
 	onChange?: React.ChangeEventHandler<HTMLInputElement>
+	onBlur?: React.FocusEventHandler<HTMLInputElement>
 }
 
 export default function Password(props: IPasswordProps) {

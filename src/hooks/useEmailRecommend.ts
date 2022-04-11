@@ -9,11 +9,19 @@ import { validateEmailPrefix } from 'utils/common'
 export default function useEmailFilter() {
 	const [email, setEmail] = useState<string>('')
 	const [isShowEmailOptions, setShowEmailOptions] = useState<boolean>(false)
-	const emailList = ['gmail.com', 'naver.com', 'hanmail.net']
+	const [isTouched, setIsTouched] = useState<boolean>(false)
+	const emailList = [
+		'gmail.com',
+		'naver.com',
+		'hanmail.net',
+		'nate.com',
+		'daum.net'
+	]
 
 	const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const isEmail = validateEmailPrefix(e.target.value)
-		setEmail(e.target.value)
+		const emailExceptforBackslash = e.target.value.replace(/[\\\[\]\(\)]/g, '')
+		const isEmail = validateEmailPrefix(emailExceptforBackslash)
+		setEmail(emailExceptforBackslash)
 		showEmailList(isEmail)
 	}
 
@@ -34,11 +42,24 @@ export default function useEmailFilter() {
 
 	const prefixTextForOptions = email.substring(0, email.lastIndexOf('@') + 1)
 
+	const onBlurHander = () => {
+		setIsTouched(true)
+	}
+
+	const onClickItem = (value: string | null) => {
+		if (value) {
+			setEmail(value)
+		}
+	}
+
 	return {
 		value: email,
 		isShowOptions: isShowEmailOptions,
+		isTouched,
 		prefixTextForOptions,
 		onChange: onChangeEmail,
+		onBlurHander,
+		onClickItem,
 		options: getFilteredListForEmailLikeMatch(emailList, email)
 	}
 }

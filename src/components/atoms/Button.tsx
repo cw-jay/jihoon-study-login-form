@@ -4,11 +4,12 @@ interface IButtonProps {
 	text?: string
 	colorMode?: 'black' | 'white'
 	className?: string
+	disabled?: boolean
 	onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 export default function Button(props: IButtonProps) {
-	const { text, className, colorMode, onClick } = props
+	const { text, className = '', colorMode, onClick, disabled } = props
 	const textColor = colorMode === 'black' ? 'white' : 'black'
 	return (
 		<button
@@ -19,6 +20,7 @@ export default function Button(props: IButtonProps) {
 			}}
 			className={className}
 			onClick={onClick}
+			disabled={disabled}
 		>
 			{text}
 		</button>
