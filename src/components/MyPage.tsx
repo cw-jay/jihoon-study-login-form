@@ -29,7 +29,11 @@ function MyPage() {
 				{userId} 님 환영합니다.
 			</div>
 			<br />
-			<Button text="로그아웃 하기" onClick={onClickLogOutButton} />
+			<Button
+				id="logoutButton"
+				text="로그아웃 하기"
+				onClick={onClickLogOutButton}
+			/>
 		</>
 	)
 }

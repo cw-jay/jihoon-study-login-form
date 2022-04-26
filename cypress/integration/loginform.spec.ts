@@ -22,8 +22,10 @@
 // ---- 로그인 로직 관련 ----
 // 16. 로그인 버튼을 눌렀을 시, MyPage 경로로 이동하는가
 // 17. MyPage에서 현재 로그인 한 유저의 아이디(이메일)가 표시되는가
-// 18. 자동 로그인(체크박스)를 체크하지 않고 로그인 했을 시, 새로 고침을 하면 Login 화면으로 돌아 오는가
-// 19. 자동 로그인(체크박스)를 클릭하고 로그인 했을 시, 새로 고침을 해도 MyPage 경로에 계속 있는가
+// 18. MyPage에서 로그 아웃 버튼을 누를 시 로그 아웃 버튼을 눌렀을 시, 로그인 화면으로 돌아 오는가
+// 19. 자동 로그인(체크박스)를 체크하지 않고 로그인 했을 시, 새로 고침을 하면 Login 화면으로 돌아 오는가
+// 20. 자동 로그인(체크박스)를 클릭하고 로그인 했을 시, 새로 고침을 해도 MyPage 경로에 계속 있는가
+// 21. 자동 로그인(체크박스)를 클릭하고 로그인 한 후, 로그 아웃 버튼을 눌렀을 시 로그인 화면으로 돌아 오는가
 
 describe('login 페이지 테스트', () => {
 	beforeEach(() => {
@@ -174,7 +176,15 @@ describe('login 페이지 테스트', () => {
 		cy.get('#welcomePanel').contains('test@naver.com')
 	})
 
-	it('18. 자동 로그인(체크박스)를 체크하지 않고 로그인 했을 시, 새로 고침을 하면 Login 화면으로 돌아 오는가', () => {
+	it('18. MyPage에서 로그 아웃 버튼을 누를 시, 로그인 화면으로 돌아가는 가', () => {
+		cy.get('#email').type(`test@naver.com`)
+		cy.get('#password').type(`test`)
+		cy.get('#loginButton').click()
+		cy.get('#logoutButton').click()
+		cy.url().should('eq', 'http://localhost:3000/')
+	})
+
+	it('19. 자동 로그인(체크박스)를 체크하지 않고 로그인 했을 시, 새로 고침을 하면 Login 화면으로 돌아 오는가', () => {
 		cy.get('#email').type(`test@naver.com`)
 		cy.get('#password').type(`test`)
 		cy.get('#loginButton').click()
@@ -182,7 +192,7 @@ describe('login 페이지 테스트', () => {
 		cy.url().should('eq', 'http://localhost:3000/')
 	})
 
-	it('19. 자동 로그인(체크박스)를 클릭하고 로그인 했을 시, 새로 고침을 해도 MyPage 경로에 계속 있는가', () => {
+	it('20. 자동 로그인(체크박스)를 클릭하고 로그인 했을 시, 새로 고침을 해도 MyPage 경로에 계속 있는가', () => {
 		cy.get('#email').type(`test@naver.com`)
 		cy.get('#password').type(`test`)
 		cy.get('#autoLoginCheck').check()
@@ -190,5 +200,15 @@ describe('login 페이지 테스트', () => {
 		cy.reload()
 		cy.url().should('include', '/mypage')
 		cy.get('#welcomePanel').contains('test@naver.com')
+	})
+
+	it('21. 자동 로그인(체크박스)를 클릭하고 로그인 한 후, 로그 아웃 버튼을 눌렀을 시 로그인 화면으로 돌아 오는가', () => {
+		cy.get('#email').type(`test@naver.com`)
+		cy.get('#password').type(`test`)
+		cy.get('#autoLoginCheck').check()
+		cy.get('#loginButton').click()
+		cy.url().should('include', '/mypage')
+		cy.get('#logoutButton').click()
+		cy.url().should('eq', 'http://localhost:3000/')
 	})
 })
