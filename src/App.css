@@ -1,3 +1,7 @@
+button:disabled {
+	background-color: gainsboro !important;
+}
+
 .fullWidth {
 	width: 100%;
 }

@@ -24,7 +24,7 @@ function MyPage() {
 	}
 	return (
 		<>
-			<div>
+			<div id="welcomePanel">
 				로그인이 되었습니다. <br />
 				{userId} 님 환영합니다.
 			</div>

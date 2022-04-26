@@ -19,7 +19,7 @@ export function validateEmailPrefix(emailPrefix: string): boolean {
 export function validateEmailFormat(email: string): boolean {
 	// regex: 알파벳과 숫자, 특수문자(dot(.), underscore(_), dash(-))가 포함된 문자열 + @ + 알파벳 + dot(.) + 알파벳 2글자 이상
 	const emailRegex = new RegExp(
-		/^[a-z0-9]+(?:[._-][a-z0-9]+)*@[a-z]+(?:[.][a-z]{2,})/,
+		/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
 		'i'
 	)
 	return emailRegex.test(email)

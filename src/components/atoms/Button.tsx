@@ -1,6 +1,7 @@
 import React from 'react'
 
 interface IButtonProps {
+	id?: string
 	text?: string
 	colorMode?: 'black' | 'white'
 	className?: string
@@ -9,7 +10,7 @@ interface IButtonProps {
 }
 
 export default function Button(props: IButtonProps) {
-	const { text, className = '', colorMode, onClick, disabled } = props
+	const { text, id, className = '', colorMode, onClick, disabled } = props
 	const textColor = colorMode === 'black' ? 'white' : 'black'
 	return (
 		<button
@@ -18,6 +19,7 @@ export default function Button(props: IButtonProps) {
 				color: textColor,
 				backgroundColor: colorMode
 			}}
+			id={id}
 			className={className}
 			onClick={onClick}
 			disabled={disabled}

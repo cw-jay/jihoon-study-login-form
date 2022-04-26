@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import Input from '../atoms/Input'
 
 interface IAutocompleteProps {
+	id?: string
 	value: string
 	options: string[]
 	isShowOptions: boolean
@@ -21,6 +22,7 @@ export default function Autocomplete(props: IAutocompleteProps) {
 	const [isFocus, setIsFocus] = useState<boolean>(false)
 	const [activeItemIndex, setActiveItemIndex] = useState<number>(-1)
 	const {
+		id,
 		value,
 		options,
 		isShowOptions,
@@ -76,7 +78,11 @@ export default function Autocomplete(props: IAutocompleteProps) {
 		if (e.key === 'ArrowUp' || e.code === 'ArrowUp') {
 			setActiveItemIndex((prevIndex) => prevIndex - 1)
 		}
-		if (e.currentTarget.value && (e.key === 'Enter' || e.code === 'Enter')) {
+		if (
+			e.currentTarget.value &&
+			activeItemIndex > -1 &&
+			(e.key === 'Enter' || e.code === 'Enter')
+		) {
 			onClickItem?.(prefixTextForOptions + options[activeItemIndex])
 			setActiveItemIndex(-1)
 		}
@@ -85,6 +91,7 @@ export default function Autocomplete(props: IAutocompleteProps) {
 	return (
 		<div className={className}>
 			<Input
+				id={id}
 				placeholder={placeholder}
 				onChange={onChange}
 				value={value}

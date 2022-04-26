@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import Input from 'components/atoms/Input'
 
 interface IPasswordProps {
+	id?: string
 	value?: string
 	className?: string
 	placeholder?: string

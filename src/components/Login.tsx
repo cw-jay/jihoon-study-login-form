@@ -44,15 +44,21 @@ function Login() {
 	return (
 		<>
 			<div className="row">
-				<Autocomplete {...emailFilterProps} placeholder="아이디 (이메일)" />
+				<Autocomplete
+					id="email"
+					{...emailFilterProps}
+					placeholder="아이디 (이메일)"
+				/>
 			</div>
 			{isEmailTouched && isEmptyValue(emailFilterProps.value) && (
-				<span className="error-message">아이디(이메일)을 입력해주세요</span>
+				<span id="requiredEmail" className="error-message">
+					아이디(이메일)을 입력해주세요
+				</span>
 			)}
 			{isEmailTouched &&
 				emailFilterProps.value &&
 				!validateEmailFormat(emailFilterProps.value) && (
-					<span className="error-message">
+					<span id="validEmail" className="error-message">
 						올바른 이메일 형식을 입력해주세요
 					</span>
 				)}
@@ -65,13 +71,21 @@ function Login() {
 				/>
 			</div>
 			<div className="row">
-				<Password {...passwordProps} placeholder="비밀번호" fullWidth />
+				<Password
+					id="password"
+					{...passwordProps}
+					placeholder="비밀번호"
+					fullWidth
+				/>
 			</div>
 			{isPasswordInvalid && (
-				<span className="error-message">비밀번호를 입력해주세요</span>
+				<span id="requiredPassword" className="error-message">
+					비밀번호를 입력해주세요
+				</span>
 			)}
 			<div className="row">
 				<Button
+					id="loginButton"
 					colorMode="black"
 					className="fullWidth"
 					text="로그인"
@@ -80,7 +94,7 @@ function Login() {
 				/>
 			</div>
 			<div className="row">
-				<Button className="fullWidth" text="회원가입" />
+				<Button id="registerButton" className="fullWidth" text="회원가입" />
 			</div>
 		</>
 	)
